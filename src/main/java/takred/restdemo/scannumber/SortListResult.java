@@ -4,32 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SortListResult {
-    private List<Integer> allNumbers;
-    private int desiredNumber;
-    private boolean contains;
+    private final List<Integer> allNumbers;
+    private final int desiredNumber;
+    private final boolean contains;
+
+    public SortListResult(List<Integer> allNumbers, int desiredNumber, boolean contains){
+        this.allNumbers = allNumbers;
+        this.desiredNumber = desiredNumber;
+        this.contains = contains;
+    }
 
     public List<Integer> getAllNumbers() {
         return allNumbers;
     }
 
-    public void setAllNumbers(List<Integer> allNumbers) {
-        this.allNumbers = allNumbers;
+    public SortListResult setAllNumbers(List<Integer> allNumbers) {
+        return new SortListResult(allNumbers, desiredNumber, contains);
     }
 
     public int getDesiredNumber() {
         return desiredNumber;
     }
 
-    public void setDesiredNumber(int desiredNumber) {
-        this.desiredNumber = desiredNumber;
+    public SortListResult setDesiredNumber(int desiredNumber) {
+        return new SortListResult(allNumbers, desiredNumber, contains);
     }
 
     public boolean getContains() {
         return contains;
     }
 
-    public void setContains(boolean contains) {
-        this.contains = contains;
+    public SortListResult setContains(boolean contains) {
+        return new SortListResult(allNumbers, desiredNumber, contains);
     }
 
 }

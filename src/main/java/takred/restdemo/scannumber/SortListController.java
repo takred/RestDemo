@@ -24,14 +24,12 @@ public class SortListController {
 //            }
             A finder = new Finder();
             A finderBisection = new FinderBisection();
-            SortListResult sortListResult = new SortListResult();
-            sortListResult.setAllNumbers(allNumbers);
-            sortListResult.setDesiredNumber(29);
+            SortListResult sortListResult = new SortListResult(allNumbers, 98, false);
             twoSortListResult = getTwoObject(sortListResult.getAllNumbers(), sortListResult.getDesiredNumber());
             twoSortListResult.get(0).setAllNumbers(new SortList().sort(twoSortListResult.get(0).getAllNumbers()));
             twoSortListResult.get(1).getAllNumbers().sort(Comparator.naturalOrder());
-            twoSortListResult.get(0).setContains(finder.contains(twoSortListResult.get(0).getAllNumbers(), twoSortListResult.get(0).getDesiredNumber()));
-            twoSortListResult.get(1).setContains(finderBisection.contains(twoSortListResult.get(1).getAllNumbers(), twoSortListResult.get(1).getDesiredNumber()));
+            twoSortListResult.set(0, twoSortListResult.get(0).setContains(finder.contains(twoSortListResult.get(0).getAllNumbers(), twoSortListResult.get(0).getDesiredNumber())));
+            twoSortListResult.set(1, twoSortListResult.get(1).setContains(finderBisection.contains(twoSortListResult.get(1).getAllNumbers(), twoSortListResult.get(1).getDesiredNumber())));
             if (twoSortListResult.get(0).getContains() != twoSortListResult.get(1).getContains()) {
                 return twoSortListResult;
             }
@@ -52,13 +50,9 @@ public class SortListController {
 
     public List<SortListResult> getTwoObject(List<Integer> allNumbers, int desiredNumber) {
         List<SortListResult> twoObject = new ArrayList<>();
-        SortListResult sortListResult = new SortListResult();
-        sortListResult.setAllNumbers(allNumbers);
-        sortListResult.setDesiredNumber(desiredNumber);
+        SortListResult sortListResult = new SortListResult(allNumbers, desiredNumber, false);
         twoObject.add(sortListResult);
-        sortListResult = new SortListResult();
-        sortListResult.setAllNumbers(allNumbers);
-        sortListResult.setDesiredNumber(desiredNumber);
+        sortListResult = new SortListResult(allNumbers, desiredNumber, false);
         twoObject.add(sortListResult);
         return twoObject;
     }
